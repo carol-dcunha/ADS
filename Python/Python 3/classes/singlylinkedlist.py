@@ -155,8 +155,62 @@ class SinglyLinkedList:
 			curr.next=prev
 			self.tail=self.head
 			self.head=curr
-				
+
+	def compareList(self,lst):
+		flag=True
+		if self.length()==lst.length():
+			curr1=self.head
+			curr2=lst.head
+			while curr1 is not None:
+				if curr1.data != curr2.data:
+					flag=False
+					break
+				curr1=curr1.next
+				curr2=curr2.next
+		else:
+			flag=False
+		return flag
 
 
+	def unionList(self,lst):
+		elts=[]
+		if not self.isEmpty():
+			curr=self.head
+			while curr is not None:
+				elts.append(curr.data)
+				curr=curr.next
+		if not lst.isEmpty():
+			curr=lst.head
+			while curr is not None:
+				elts.append(curr.data)
+				curr=curr.next
+		if len(elts)!=0:
+			newlst=[]
+			union_lst=SinglyLinkedList()
+			for item in elts:
+				if item not in newlst:
+					newlst.append(item)
+					union_lst.addLast(item)
+			return union_lst
 
+
+	def intersectionList(self,lst):
+		elts1=[]
+		elts2=[]
+		if not self.isEmpty():
+			curr=self.head
+			while curr is not None:
+				elts1.append(curr.data)
+				curr=curr.next
+		if not lst.isEmpty():
+			curr=lst.head
+			while curr is not None:
+				elts2.append(curr.data)
+				curr=curr.next
+		if len(elts1)!=0 or len(elts2)!=0:
+			new_lst=list(set(elts1) & set(elts2))
+			union_lst=SinglyLinkedList()
+			for item in new_lst:
+				union_lst.addLast(item)
+			return union_lst
 
