@@ -12,12 +12,12 @@ def test_reverseList():
 	slist.addFirst(70)
 
 	assert(slist.length()==7)
-	assert(slist.getHead()==70)
-	assert(slist.getTail()==80)
+	assert(slist.firstElement()==70)
+	assert(slist.lastElement()==80)
 	slist.reverseList()
 	assert(slist.length()==7)	
-	assert(slist.getTail()==70)
-	assert(slist.getHead()==80)
+	assert(slist.lastElement()==70)
+	assert(slist.firstElement()==80)
 	
 
 if __name__=="__main__":

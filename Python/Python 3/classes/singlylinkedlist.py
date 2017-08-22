@@ -117,15 +117,13 @@ class SinglyLinkedList:
 	def addAfterElement(self,val,key):
 		if not self.isEmpty() and self.isMember(key):
 			new_node=self._Node(val)
-			if self.head.data==key:
-				new_node.next=self.head
-				self.head=new_node
-			else:
-				curr=self.head
-				while curr.next.data!=key:
-					curr=curr.next
-				new_node.next=curr.next
-				curr.next=new_node
+			curr=self.head
+			while curr.data!=key:
+				curr=curr.next
+			new_node.next=curr.next
+			curr.next=new_node
+			if curr is self.tail:
+				self.tail=new_node
 			self.count+=1
 
 	def deleteElement(self,key):
@@ -185,12 +183,10 @@ class SinglyLinkedList:
 				elts.append(curr.data)
 				curr=curr.next
 		if len(elts)!=0:
-			newlst=[]
+			new_lst=list(set(elts))
 			union_lst=SinglyLinkedList()
-			for item in elts:
-				if item not in newlst:
-					newlst.append(item)
-					union_lst.addLast(item)
+			for item in new_lst:
+				union_lst.addLast(item)
 			return union_lst
 
 
@@ -207,7 +203,7 @@ class SinglyLinkedList:
 			while curr is not None:
 				elts2.append(curr.data)
 				curr=curr.next
-		if len(elts1)!=0 or len(elts2)!=0:
+		if len(elts1)!=0 and len(elts2)!=0:
 			new_lst=list(set(elts1) & set(elts2))
 			union_lst=SinglyLinkedList()
 			for item in new_lst:

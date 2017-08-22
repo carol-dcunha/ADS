@@ -16,6 +16,8 @@ def test_unionList():
 	slist2.addLast(55)
 
 	union_lst=slist1.unionList(slist2)
+	assert(union_lst.isMember(82)==True)
+	assert(union_lst.length()==7)
 
 
 if __name__=="__main__":

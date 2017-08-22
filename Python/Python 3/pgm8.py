@@ -16,6 +16,9 @@ def test_intersectionList():
 	slist2.addLast(55)
 
 	inter_lst=slist1.intersectionList(slist2)
+	assert(inter_lst.isMember(40)==True)
+	assert(inter_lst.length()==2)
+	assert(inter_lst.isMember(82)==False)
 
 
 if __name__=="__main__":
