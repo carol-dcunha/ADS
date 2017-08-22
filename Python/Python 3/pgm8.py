@@ -1,6 +1,6 @@
 import classes.singlylinkedlist as sll
 
-def test_unionList():
+def test_intersectionList():
 	slist1=sll.SinglyLinkedList()
 	slist2=sll.SinglyLinkedList()
 
@@ -16,8 +16,7 @@ def test_unionList():
 	slist2.addLast(55)
 
 	inter_lst=slist1.intersectionList(slist2)
-	inter_lst.displayList()
 
 
 if __name__=="__main__":
-	test_unionList()
+	test_intersectionList()
