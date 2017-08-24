@@ -1,7 +1,7 @@
 import classes.singlylinkedlist as sll
 
 
-def test_listInsert():
+def test_listDelete():
 	slist=sll.SinglyLinkedList()
 	slist.addFirst(50)
 	slist.addFirst(20)
@@ -19,4 +19,4 @@ def test_listInsert():
 	
 
 if __name__=="__main__":
-	test_listInsert()
+	test_listDelete()
