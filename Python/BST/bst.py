@@ -9,6 +9,7 @@ class BST:
 	def __init__(self):
 		self.root=None
 		self.count=0
+		self.leafcount=0
 
 	def isEmpty(self):
 		return self.count==0
@@ -33,6 +34,36 @@ class BST:
 			elif key>parent.data:
 				parent.right=new_node
 			self.count+=1
+
+	def deleteNode(self,key):
+		if not self.isEmpty():
+			self.root=self._delete(self.root,key)
+
+	def _delete(self,node,key):
+		if node is None:
+			return node
+		if key<node.data:
+			node.left=self._delete(node.left,key)
+		elif key>node.data:
+			node.right=self._delete(node.right,key)
+		elif node.left and node.right:
+			temp=self._findMin(node.right)
+			node.data=temp.data
+			node.right=self._delete(node.right,node.data)
+		else:
+			if node.left is None:
+				node=node.right
+			else:
+				node=node.left
+			self.count-=1
+		return node
+
+	def _findMin(self,node):
+		if node.left is None:
+			return node
+		else:
+			return self._findMin(node.left)
+
 
 	def isMember(self,key):
 		if not self.isEmpty():
@@ -65,3 +96,49 @@ class BST:
 			while current.right is not None:
 				current=current.right
 			return current.data
+
+	def inorder(self):
+		if not self.isEmpty():
+			node=self.root
+			self._inorder(node)
+
+	def _inorder(self,node):
+		if node:
+			self._inorder(node.left)
+			print node.data," ",
+			self._inorder(node.right)
+
+	def preorder(self):
+		if not self.isEmpty():
+			node=self.root
+			self._preorder(node)
+
+	def _preorder(self,node):
+		if node:
+			print node.data," ",
+			self._preorder(node.left)
+			self._preorder(node.right)
+
+	def postorder(self):
+		if not self.isEmpty():
+			node=self.root
+			self._postorder(node)
+
+	def _postorder(self,node):
+		if node:
+			self._postorder(node.left)
+			self._postorder(node.right)
+			print node.data," ",
+
+	def leafCount(self):
+		node=self.root
+		self._getLeafCount(node)
+		return self.leafcount
+
+	def _getLeafCount(self,node):
+		if node.left:
+			self._getLeafCount(node.left)
+		if node.right:
+			self._getLeafCount(node.right)
+		if not node.left and not node.right:
+			self.leafcount+=1
