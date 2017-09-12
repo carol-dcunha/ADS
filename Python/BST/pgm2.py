@@ -32,4 +32,3 @@ if __name__=="__main__":
 	printInorder(obj)
 	printPreorder(obj)
 	printPostorder(obj)
-	obj.leafNodes()

@@ -12,6 +12,11 @@ def test_bstoperations():
 	assert(obj.length()==4)
 	assert(obj.minElement()==10)
 	assert(obj.maxElement()==40)
+	obj.deleteNode(30)
+	assert(obj.getRoot()==40)
+	obj.deleteNode(40)
+	assert(obj.getRoot()==10)
+	assert(obj.length()==2)
 
 
 if __name__=="__main__":

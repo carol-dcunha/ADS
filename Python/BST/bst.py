@@ -35,6 +35,7 @@ class BST:
 				parent.right=new_node
 			self.count+=1
 
+
 	def deleteNode(self,key):
 		if not self.isEmpty():
 			self.root=self._delete(self.root,key)
@@ -83,6 +84,7 @@ class BST:
 		if not self.isEmpty():
 			return self.root.data
 
+
 	def minElement(self):
 		if not self.isEmpty():
 			current=self.root
@@ -97,6 +99,7 @@ class BST:
 				current=current.right
 			return current.data
 
+
 	def inorder(self):
 		if not self.isEmpty():
 			node=self.root
@@ -107,6 +110,7 @@ class BST:
 			self._inorder(node.left)
 			print node.data," ",
 			self._inorder(node.right)
+
 
 	def preorder(self):
 		if not self.isEmpty():
@@ -119,6 +123,7 @@ class BST:
 			self._preorder(node.left)
 			self._preorder(node.right)
 
+
 	def postorder(self):
 		if not self.isEmpty():
 			node=self.root
@@ -129,6 +134,7 @@ class BST:
 			self._postorder(node.left)
 			self._postorder(node.right)
 			print node.data," ",
+
 
 	def leafCount(self):
 		node=self.root
@@ -142,3 +148,35 @@ class BST:
 			self._getLeafCount(node.right)
 		if not node.left and not node.right:
 			self.leafcount+=1
+
+
+	def compareTrees(self,tree2):
+		res=self._compare(self.root,tree2.root)
+		return res
+
+	def _compare(self,tree1,tree2):
+		if tree1.left and tree2.left:
+			res=self._compare(tree1.left,tree2.left)
+			if not res:
+				return False
+		if tree1.right and tree2.right:
+			res=self._compare(tree1.right,tree2.right)
+			if not res:
+				return False
+		if tree1.data == tree2.data:
+			return True
+		else:
+			return False
+
+
+	def height(self):
+		res=self._height(self.root)
+		return res
+
+	def _height(self,node):
+		if not node:
+			return 0
+		else:
+			return 1 + max(self._height(node.left),self._height(node.right))
+
+
